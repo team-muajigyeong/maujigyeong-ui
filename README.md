@@ -1,0 +1,75 @@
+# @muajigyeong/ui
+
+React 19 공통 UI 패키지. ESM 전용이며 CSS Modules를 지원하는 번들러가 필요합니다.
+Next.js에 의존하지 않고 React는 사용하는 앱에서 제공합니다.
+
+## 설치와 사용
+
+이 저장소에서는 루트의 `npm ci`가 workspace를 연결하고 패키지를 빌드합니다.
+외부 프로젝트에서는 `npm run pack:ui`로 생성한 tgz를 `npm install <파일 경로>`로 설치합니다.
+아직 npm 레지스트리에 배포되지 않았습니다.
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import CheckChip from "@muajigyeong/ui/check-chip";
+import ControlledInput from "@muajigyeong/ui/controlled-input";
+import ChoiceSelect from "@muajigyeong/ui/choice-select";
+import Accordion from "@muajigyeong/ui/accordion";
+import "@muajigyeong/ui/theme.css";
+
+export default function Example() {
+  const [checked, setChecked] = useState(false);
+  const [name, setName] = useState("");
+  const [order, setOrder] = useState("");
+  return (
+    <>
+      <CheckChip label="알림 받기" checked={checked} onChange={setChecked} />
+      <ControlledInput label="이름" value={name} onChange={setName} />
+      <ChoiceSelect
+        value={order}
+        onChange={setOrder}
+        placeholder="선택하세요"
+        ariaLabel="표시 순서"
+        options={[{ value: "recent", label: "최신순" }]}
+      />
+      <Accordion items={[{ id: "help", title: "도움말", content: "안내 내용" }]} />
+    </>
+  );
+}
+```
+
+루트에서 `import { CheckChip, type CheckChipProps } from "@muajigyeong/ui"`도 가능합니다.
+각 하위 경로에서도 default 컴포넌트와 해당 Props 타입을 제공합니다.
+
+## 스타일 계약
+
+CSS Modules는 컴포넌트가 자동으로 불러옵니다. `theme.css`는 선택 사항이며
+기존 무아지경 앱은 globals.css의 변수를 사용하므로 추가로 import하지 않습니다.
+테마를 직접 제공할 때 필요한 변수:
+
+`--color-border`, `--color-surface`, `--color-text`, `--color-body`,
+`--color-textfield-border`, `--teal-400`, `--teal-500`, `--teal-700`,
+`--sand-100`, `--sand-800`. `--color-focus`는 선택 사항입니다.
+
+소비자가 폰트와 전역 box-sizing을 관리합니다. 패키지는 전역 reset을 적용하지 않습니다.
+light-dark(), color-mix(), :has()를 지원하는 브라우저를 대상으로 합니다.
+
+## 상태와 접근성
+
+- CheckChip, ChoiceSelect, ControlledInput은 부모가 상태를 갱신해야 합니다.
+- ChoiceSelect에는 구분 가능한 ariaLabel과 고유한 option value를 제공합니다.
+- Accordion item id는 목록 안에서 고유해야 합니다.
+- 입력 오류는 invalid와 describedBy를 통해 설명 요소에 연결합니다.
+- 기존 동작과 스타일을 옮긴 단계이며 접근성 인증을 의미하지 않습니다.
+
+## 개발 및 문서
+
+루트에서 `npm run storybook`으로 예제와 props 문서를 열 수 있습니다.
+`npm run build:docs`는 `storybook-static/`에 정적 문서를 생성합니다.
+UI 수정 후 앱에 반영하려면 `npm run build:ui`를 실행합니다.
+`npm run dev`와 `npm run build`는 시작 전에 패키지를 자동으로 빌드합니다.
+
+공통 구현은 이 패키지에서만 수정합니다. 기존 앱 위치에 복사본을 만들지 않습니다.
+새 설명은 JSDoc으로 작성하고 stories를 함께 갱신합니다.
