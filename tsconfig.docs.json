@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "."
+  },
+  "include": [
+    "src",
+    "stories",
+    ".storybook"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
+    "storybook-static"
+  ]
+}

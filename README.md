@@ -5,8 +5,8 @@ Next.js에 의존하지 않고 React는 사용하는 앱에서 제공합니다.
 
 ## 설치와 사용
 
-이 저장소에서는 루트의 `npm ci`가 workspace를 연결하고 패키지를 빌드합니다.
-외부 프로젝트에서는 `npm run pack:ui`로 생성한 tgz를 `npm install <파일 경로>`로 설치합니다.
+이 저장소에서는 `npm ci`로 개발 의존성을 설치하고 패키지를 빌드합니다.
+소비 프로젝트에서는 `npm pack`으로 생성한 tgz를 `npm install <파일 경로>`로 설치합니다.
 아직 npm 레지스트리에 배포되지 않았습니다.
 
 ```tsx
@@ -66,10 +66,27 @@ light-dark(), color-mix(), :has()를 지원하는 브라우저를 대상으로 �
 
 ## 개발 및 문서
 
-루트에서 `npm run storybook`으로 예제와 props 문서를 열 수 있습니다.
+이 독립 저장소에서 `npm run storybook`으로 예제와 props 문서를 열 수 있습니다.
 `npm run build:docs`는 `storybook-static/`에 정적 문서를 생성합니다.
-UI 수정 후 앱에 반영하려면 `npm run build:ui`를 실행합니다.
-`npm run dev`와 `npm run build`는 시작 전에 패키지를 자동으로 빌드합니다.
+`npm run build`는 ESM, 타입 선언, CSS를 dist에 생성합니다.
+`npm run typecheck`는 컴포넌트와 Storybook 예제·설정을 검사합니다.
+UI 수정 후 소비 앱에는 새 패키지 버전을 설치해 반영합니다.
 
 공통 구현은 이 패키지에서만 수정합니다. 기존 앱 위치에 복사본을 만들지 않습니다.
 새 설명은 JSDoc으로 작성하고 stories를 함께 갱신합니다.
+
+## 저장소 운영
+
+이 저장소는 무아지경 앱의 packages/ui 이력을 추출해 만들었습니다.
+src에는 공통 UI, stories에는 예제, .storybook에는 문서 설정만 둡니다.
+앱 라우트, 업무 데이터, 환경 변수는 포함하지 않습니다.
+
+1. 이 저장소에서 컴포넌트와 JSDoc, stories를 수정합니다.
+2. `npm run typecheck`, `npm run build`, `npm run build:docs`를 실행합니다.
+3. 변경에 맞춰 package.json 버전을 올리고 `npm pack`을 실행합니다.
+4. 배포 경로가 정해지면 레지스트리에 게시하거나 불변 Git 커밋을 사용합니다.
+5. 앱에서 의존성 버전과 lockfile을 갱신하고 앱 빌드를 검증합니다.
+
+Git 의존성을 사용할 때는 prepare가 설치 시 ESM을 빌드합니다.
+접근 가능한 원격 URL과 고정 커밋이 필요하며 private 저장소는 CI에도 읽기 권한이 필요합니다.
+원격 저장소와 레지스트리 위치는 아직 확정되지 않았습니다.

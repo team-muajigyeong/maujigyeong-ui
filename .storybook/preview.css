@@ -1,0 +1,2 @@
+body { font-family: system-ui, sans-serif; color: var(--color-text); background: var(--color-body); }
+*, *::before, *::after { box-sizing: border-box; }
