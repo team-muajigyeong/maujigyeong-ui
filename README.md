@@ -7,7 +7,16 @@ Next.js에 의존하지 않고 React는 사용하는 앱에서 제공합니다.
 
 이 저장소에서는 `npm ci`로 개발 의존성을 설치하고 패키지를 빌드합니다.
 소비 프로젝트에서는 `npm pack`으로 생성한 tgz를 `npm install <파일 경로>`로 설치합니다.
+원격은 `git@mua:team-muajigyeong/maujigyeong-ui.git`입니다.
+SSH config의 `mua` 별칭을 사용하는 Git 패키지로 설치할 수 있습니다.
 아직 npm 레지스트리에 배포되지 않았습니다.
+
+```bash
+npm install --save-exact "git+ssh://git@mua/team-muajigyeong/maujigyeong-ui.git#FULL_COMMIT_SHA"
+```
+
+FULL_COMMIT_SHA는 원격 master의 실제 전체 커밋 해시로 바꿉니다.
+앱의 package.json과 package-lock.json에 선택한 커밋을 함께 기록합니다.
 
 ```tsx
 "use client";
@@ -89,6 +98,6 @@ src에는 공통 UI, stories에는 예제, .storybook에는 문서 설정만 둡
 
 Git 의존성을 사용할 때는 prepare가 설치 시 ESM을 빌드합니다.
 접근 가능한 원격 URL과 고정 커밋이 필요하며 private 저장소는 CI에도 읽기 권한이 필요합니다.
-원격 저장소와 레지스트리 위치는 아직 확정되지 않았습니다.
+원격 저장소는 위 SSH 주소로 확정되었습니다. 레지스트리 게시 위치는 미정입니다.
 
 앱 전환과 원격 설치 절차는 [저장소 동기화 안내](REPOSITORY-SYNC.md)를 참고하세요.
