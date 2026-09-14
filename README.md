@@ -101,3 +101,14 @@ Git 의존성을 사용할 때는 prepare가 설치 시 ESM을 빌드합니다.
 원격 저장소는 위 SSH 주소로 확정되었습니다. 레지스트리 게시 위치는 미정입니다.
 
 앱 전환과 원격 설치 절차는 [저장소 동기화 안내](REPOSITORY-SYNC.md)를 참고하세요.
+
+## 0.2.0 추가 컴포넌트
+
+SectionWithHeader, FormActionButtons, StatusToast를 추가했습니다.
+[사용 예제와 앱 이전 안내](docs/0.2.0.md)를 참고하세요.
+버튼별 스타일은 cancelButtonClassName/confirmButtonClassName으로 전달합니다.
+토스트를 같은 문구로 다시 표시하려면 notificationId를 바꿉니다.
+기본 테마에는 새 컴포넌트가 사용하는 --teal-900이 포함됩니다.
+
+브라우저 검증: npm run test:browser. 최초 npx playwright install chromium을 실행하거나
+설치된 Edge를 쓰려면 PLAYWRIGHT_CHANNEL=msedge를 환경 변수로 지정합니다.
