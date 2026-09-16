@@ -1,6 +1,6 @@
 {
   "name": "@muajigyeong/ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Muajigyeong shared React UI components",
   "type": "module",
   "files": [
@@ -44,6 +44,14 @@
     "./status-toast": {
       "types": "./dist/status-toast/index.d.ts",
       "import": "./dist/status-toast/index.js"
+    },
+    "./text-field": {
+      "types": "./dist/text-field/index.d.ts",
+      "import": "./dist/text-field/index.js"
+    },
+    "./switch": {
+      "types": "./dist/switch/index.d.ts",
+      "import": "./dist/switch/index.js"
     }
   },
   "scripts": {

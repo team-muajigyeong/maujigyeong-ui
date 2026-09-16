@@ -14,3 +14,7 @@ export { default as FormActionButtons } from "./form-action-buttons/index.js";
 export type { FormActionButtonsProps } from "./form-action-buttons/index.js";
 export { default as StatusToast } from "./status-toast/index.js";
 export type { StatusToastProps } from "./status-toast/index.js";
+export { AOSTextField } from "./text-field/index.js";
+export type { AOSTextFieldProps } from "./text-field/index.js";
+export { default as Switch } from "./switch/index.js";
+export type { SwitchProps } from "./switch/index.js";

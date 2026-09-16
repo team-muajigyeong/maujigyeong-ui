@@ -1,0 +1,91 @@
+.txtfield-wrapper.aos {
+  display: inline-block;
+  position: relative;
+  height: 3.6em;
+  min-width: 250px;
+  cursor:text; border-radius: 1em;
+  border: solid 0.1em var(--color-textfield-border);
+  .label-text {
+    gap: 0.5em; padding: 0.25em;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    position: absolute;
+    left: 0.5em; top:50%; transform: translateY(-50%);
+    transition: top 0.2s, transform 0.5s;
+    opacity: 0.7;
+    svg {color: var(--color-button-accent);}
+  }
+
+  input {
+    position: absolute;
+    width: 100%; bottom: 0.75em;
+    box-sizing: border-box;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding-inline: 1em;
+    color: transparent;
+  }
+  &:focus-within {
+    outline: auto; 
+    outline-offset: 0.2em;
+  }
+  &:focus-within,&.fill {
+    >.label-text {
+      top: 0; transform: translateY(0);
+      margin: auto 0;
+      opacity: 1;
+    }
+    >input {
+      color: inherit;
+    }
+  }
+
+  .btn-show-password {
+    font-size: 1.1em; position: absolute; top: 50%; right: 0; left: 0; margin-left:auto; margin-right: 0.5em;
+    transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center;
+    width: 1.3em; height: 1.3em;
+    border: none; background-color: transparent;
+    border-radius: 50%; color: var(--color-button-accent);
+  }
+}
+
+.txtfield-wrapper.aos.compact {
+  height: 2.8rem;
+  min-width: 0;
+  border-radius: 0.75rem;
+
+  input {
+    bottom: 0.45rem;
+  }
+}
+
+.txtfield-wrapper.aos.stacked {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: auto;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+
+  > .label-text {
+    position: static;
+    transform: none;
+    margin: 0;
+    padding: 0;
+    opacity: 1;
+    overflow-wrap: anywhere;
+    word-break: keep-all;
+    line-height: 1.5;
+  }
+
+  > input {
+    position: static;
+    min-width: 0;
+    min-height: 1.5em;
+    padding: 0;
+    color: inherit;
+  }
+}

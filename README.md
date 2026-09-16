@@ -112,3 +112,10 @@ SectionWithHeader, FormActionButtons, StatusToast를 추가했습니다.
 
 브라우저 검증: npm run test:browser. 최초 npx playwright install chromium을 실행하거나
 설치된 Edge를 쓰려면 PLAYWRIGHT_CHANNEL=msedge를 환경 변수로 지정합니다.
+
+## 0.3.0 입력 컴포넌트
+
+AOSTextField와 Switch를 추가했습니다. [사용법·호환성·검증](docs/0.3.0.md)을 참고하세요.
+단순 입력과 textarea에는 ControlledInput, 떠 있는 라벨·아이콘·비밀번호 전환에는
+AOSTextField를 사용합니다. 기존 getValue/setValue 및 pressed/setPressed API를 유지합니다.
+추가 테마 변수는 --sand-500, --teal-200, --teal-300, --color-button-accent입니다.
