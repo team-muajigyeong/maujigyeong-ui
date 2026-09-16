@@ -7,12 +7,12 @@ Next.js에 의존하지 않고 React는 사용하는 앱에서 제공합니다.
 
 이 저장소에서는 `npm ci`로 개발 의존성을 설치하고 패키지를 빌드합니다.
 소비 프로젝트에서는 `npm pack`으로 생성한 tgz를 `npm install <파일 경로>`로 설치합니다.
-원격은 `git@mua:team-muajigyeong/maujigyeong-ui.git`입니다.
+원격은 `git@mua:team-muajigyeong/muajigyeong-ui.git`입니다.
 SSH config의 `mua` 별칭을 사용하는 Git 패키지로 설치할 수 있습니다.
 아직 npm 레지스트리에 배포되지 않았습니다.
 
 ```bash
-npm install --save-exact "git+ssh://git@mua/team-muajigyeong/maujigyeong-ui.git#FULL_COMMIT_SHA"
+npm install --save-exact "git+ssh://git@mua/team-muajigyeong/muajigyeong-ui.git#FULL_COMMIT_SHA"
 ```
 
 FULL_COMMIT_SHA는 원격 master의 실제 전체 커밋 해시로 바꿉니다.

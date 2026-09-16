@@ -85,6 +85,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@mua/team-muajigyeong/maujigyeong-ui.git"
+    "url": "git+ssh://git@mua/team-muajigyeong/muajigyeong-ui.git"
   }
 }

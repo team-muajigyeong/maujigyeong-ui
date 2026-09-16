@@ -1,6 +1,6 @@
 # 독립 UI 원격 설치와 동기화
 
-원격: git@mua:team-muajigyeong/maujigyeong-ui.git
+원격: git@mua:team-muajigyeong/muajigyeong-ui.git
 패키지: @muajigyeong/ui (ESM 전용, React 19)
 문서: 이 저장소의 Storybook에서 관리합니다.
 
@@ -9,7 +9,7 @@
 앱은 Git 원격의 고정 커밋을 설치합니다. 아래 FULL_COMMIT_SHA를 실제 해시로 바꿉니다.
 
 ```bash
-npm install --save-exact "git+ssh://git@mua/team-muajigyeong/maujigyeong-ui.git#FULL_COMMIT_SHA"
+npm install --save-exact "git+ssh://git@mua/team-muajigyeong/muajigyeong-ui.git#FULL_COMMIT_SHA"
 ```
 
 prepare가 소스에서 ESM·타입 선언·CSS를 빌드합니다. Git 설치 시 빌드용 개발
