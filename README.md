@@ -119,3 +119,16 @@ AOSTextField와 Switch를 추가했습니다. [사용법·호환성·검증](doc
 단순 입력과 textarea에는 ControlledInput, 떠 있는 라벨·아이콘·비밀번호 전환에는
 AOSTextField를 사용합니다. 기존 getValue/setValue 및 pressed/setPressed API를 유지합니다.
 추가 테마 변수는 --sand-500, --teal-200, --teal-300, --color-button-accent입니다.
+
+## Storybook 소스 보기의 컴포넌트 이름
+
+문서 생성기가 기본 export의 이름을 index.tsx 상위 폴더명에서 추론하면
+소스 보기에 <accordion>처럼 소문자 이름이 표시될 수 있습니다.
+.storybook/main.ts의 componentNameResolver는 TypeScript 선언에서 실제 React 이름을
+가져오므로 함수 선언과 화살표 함수 모두 <Accordion>, <SectionWithHeader>처럼 표시합니다.
+컴포넌트 구현과 ESM 공개 API는 변경하지 않습니다.
+
+2026-09-16 검증: npm run typecheck와 npm run build:docs 통과.
+PLAYWRIGHT_CHANNEL=msedge 환경에서 scripts/verify-components.mjs로 기존 동작과
+아홉 컴포넌트의 모든 문서 예제에서 JSX 이름 표시를 확인했습니다.
+향후 npm run test:browser에서도 이 회귀 검증을 실행합니다.

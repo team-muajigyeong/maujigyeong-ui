@@ -167,8 +167,29 @@ try {
   await page.goto(`${base}?id=ui-formactionbuttons--docs&viewMode=docs`);
   await page.getByRole("heading", { name: "FormActionButtons", exact: true }).waitFor();
   await page.getByText("Additional class for the cancel button; owned by the consuming app.", { exact: false }).first().waitFor();
+  const documentedComponents = [
+    ['accordion', 'Accordion'], ['checkchip', 'CheckChip'],
+    ['choiceselect', 'ChoiceSelect'], ['controlledinput', 'ControlledInput'],
+    ['sectionwithheader', 'SectionWithHeader'], ['formactionbuttons', 'FormActionButtons'],
+    ['statustoast', 'StatusToast'], ['textfield', 'AOSTextField'], ['switch', 'Switch'],
+  ];
+  for (const [slug, componentName] of documentedComponents) {
+    await page.goto(`${base}?id=ui-${slug}--docs&viewMode=docs`);
+    await page.locator('.sbdocs').first().waitFor();
+    const toggles = page.getByText('Show code', { exact: true });
+    const count = await toggles.count();
+    assert.ok(count > 0, 'Docs must provide source examples');
+    for (let i = 0; i < count; i++) await toggles.first().click();
+    await page.waitForFunction(expected => {
+      const blocks = [...document.querySelectorAll('.sbdocs-preview pre')];
+      return blocks.length === expected && blocks.every(el => el.textContent?.trim() && el.textContent.trim() !== '{}');
+    }, count);
+    for (const source of await page.locator('.sbdocs-preview pre').allTextContents()) {
+      assert.match(source, new RegExp('<' + componentName + '[\\s/>]'), `JSX source must use ${componentName}: ${source}`);
+    }
+  }
   assert.deepEqual(errors, []);
-  console.log("PASS: nine components, text/password inputs, switch state and keyboard, busy/disabled actions, style slots, heading levels, repeated toast, announcements, keyboard and Autodocs");
+  console.log("PASS: nine components, text/password inputs, switch state and keyboard, busy/disabled actions, style slots, heading levels, repeated toast, announcements, keyboard, Autodocs and PascalCase JSX source for every example");
 } finally {
   await browser?.close();
   await new Promise(resolve => server.close(resolve));
